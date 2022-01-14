@@ -15,9 +15,10 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t travis-ci-example .
-  - docker tag travis-ci-example ismaelbernal83/travis-ci-example
+  - docker build -t simple-node .
+  - docker tag simple-node ismaelbernal83/simple-node:latest
 
+# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push ismaelbernal83/travis-ci-example
+  - docker push ismaelbernal83/simple-node
